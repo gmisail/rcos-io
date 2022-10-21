@@ -3,7 +3,7 @@
 ## Running
 
 First, make sure that you have `flask` installed. We are using a virtual environment
-to manage the environment.
+to manage the project environment & dependencies.
 
 ```
 . venv/bin/activate
