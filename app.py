@@ -18,6 +18,8 @@ def projects():
 def project(project_id): 
     project = db.get_project(project_id)
 
+    print(project)
+
     if len(project) == 1:
         project = project[0]
 
