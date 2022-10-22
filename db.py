@@ -27,11 +27,28 @@ def get_project(project_id: str):
             project_id
           }
         }
-
-    """
+        """
     )
 
     result = client.execute(query, variable_values={"id": project_id})
+    return result["projects"]
+
+def get_all_projects():
+    query = gql(
+        """
+        query {
+            projects {
+                title
+                description
+                stack
+                repository_urls
+                project_id
+            }  
+        }
+        """
+    )
+
+    result = client.execute(query, variable_values={})
     return result["projects"]
 
 
