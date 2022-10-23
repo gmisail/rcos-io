@@ -22,28 +22,34 @@ def index():
     return "<p>hello world</p>"
 
 '''
+    Render the projects page given a list of projects.
+'''
+def render_projects(projects):
+    return render_template("projects.html", projects=projects)
+
+'''
     Get all projects for a specific semester.
 '''
 @app.route("/projects/<semester>")
-def semester_projects(semester=None):        
-    projects = db.get_semester_projects(semester, False)
-    return render_template("projects.html", projects=projects)
+def semester_projects(semester=None):  
+    if semester == None:
+        return render_projects([], False)
+    
+    return render_projects(db.get_semester_projects(semester, False))
 
 '''
     Get all projects for the current semester.
 '''
 @app.route("/projects")
-def current_projects(semester=None):
-    projects = db.get_semester_projects(get_current_semester(), False)
-    return render_template("projects.html", projects=projects)
+def current_projects():
+    return render_projects(db.get_semester_projects(get_current_semester(), False))
 
 '''
     Get all projects for all past semesters, current semester included.
 '''
 @app.route("/projects/past")
 def past_projects():
-    projects = db.get_all_projects()
-    return render_template("projects.html", projects=projects)
+    return render_projects(db.get_all_projects())
 
 @app.route("/project/<project_id>")
 def project(project_id):

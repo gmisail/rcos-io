@@ -37,13 +37,13 @@ def get_all_projects():
     query = gql(
         """
         query {
-            projects {
+            projects(order_by: {title: asc}) {
                 title
                 description
                 stack
                 repository_urls
                 project_id
-            }  
+            }
         }
         """
     )
