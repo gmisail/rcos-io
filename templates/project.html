@@ -5,6 +5,28 @@
 	<body>
 		<h3>{{ project['title'] }}</h3>
 		<p>{{ project['description'] }}</p>
-		<p>{{ project['stack'] }}</p>
+
+		<h4>Stack</h4>
+		{% if project['stack'] is defined and project['stack']|length > 0 %}
+			<ul>
+				{% for s in project['stack'] %}
+					<li>{{ s }}</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<i>None yet!</i>
+		{% endif %}
+		
+
+		<h4>Members</h4>
+		{% if project['enrollments'] is defined and project['enrollments']|length > 0 %}
+			<ul>
+				{% for user in project['enrollments'] %}
+					<li>{{ user['user']['first_name'] }} {{ user['user']['last_name'] }} ({{ user['semester']['title'] }})</li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<i>None yet!</i>
+		{% endif %}
 	</body>
 </html>

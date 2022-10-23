@@ -25,6 +25,17 @@ def get_project(project_id: str):
             stack
             repository_urls
             project_id
+            enrollments {
+                user {
+                    rcsid
+                    first_name
+                    last_name
+                }
+                semester {
+                    semester_id
+                    title
+                }
+            }
           }
         }
         """
