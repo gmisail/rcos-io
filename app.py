@@ -57,5 +57,17 @@ def project(project_id):
 
     if len(project) == 1:
         project = project[0]
+    
+    # get all semesters where the project had members
+    semesters = set([ user['semester']['title'] for user in project['enrollments'] ])
+    members_by_semester = {}
+
+    for s in semesters:
+        members_by_semester[s] = []
+
+    for user in project['enrollments']:
+        members_by_semester.get(user['semester']['title']).append(user)
+        
+    project['assignments'] = members_by_semester
 
     return render_template("project.html", project=project)
