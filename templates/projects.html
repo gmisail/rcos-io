@@ -1,15 +1,17 @@
-<html>
-	<head>
-		<title>RCOS I/O</title>
-	</head>
-	<body>
-		{% for project in projects %}
-			<tr>
-				<td>
-					<h3>{{ project['title'] }}</h3>
-					<a href="{{ '/project/%s' % project['project_id'] }}">Go to...</a>
-				</td>
-			</tr>
-		{% endfor %}
-	</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+	<a href="/projects">Current Projects</a>
+	<a href="/projects/past">Past Projects</a>
+
+	{% for project in projects %}
+	<tr>
+		<td>
+			<h3>{{ project['title'] }}</h3>
+			<a href="{{ '/project/%s' % project['project_id'] }}">Go to...</a>
+		</td>
+	</tr>
+	{% endfor %}
+{% endblock %}
